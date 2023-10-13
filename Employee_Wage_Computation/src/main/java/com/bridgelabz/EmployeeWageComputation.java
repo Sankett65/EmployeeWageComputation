@@ -16,17 +16,7 @@ public class EmployeeWageComputation {
     }
 
     public boolean calculateWage(){
-//        if (check==0){
-//            System.out.println("Employee is Present");
-//            int wage = wagePerHour*fullDay;
-//            System.out.println("Employee Wage is : "+wage);
-//        }else if (check==1){
-//            System.out.println("Employee is Present For PartTime");
-//            int wage = wagePerHour*partTime;
-//            System.out.println("Employee Wage is : "+wage);
-//        }else {
-//            System.out.println("Employee is Absent");
-//        }
+
         int totalhours=0;
         int totalWage=0;
         int count =0;
