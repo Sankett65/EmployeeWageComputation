@@ -15,18 +15,8 @@ public class EmployeeWageComputation {
         return check;
     }
 
-    public boolean calculateWage(){
-//        if (check==0){
-//            System.out.println("Employee is Present");
-//            int wage = wagePerHour*fullDay;
-//            System.out.println("Employee Wage is : "+wage);
-//        }else if (check==1){
-//            System.out.println("Employee is Present For PartTime");
-//            int wage = wagePerHour*partTime;
-//            System.out.println("Employee Wage is : "+wage);
-//        }else {
-//            System.out.println("Employee is Absent");
-//        }
+    public int calculateWage(String CompanyName,int workingHoursperMonth,int workindayspermonth,int fullTimeHours,int partTimeHours,int wagePerHour){
+        System.out.println("For Company "+ CompanyName+" wage computation is");
         int totalhours=0;
         int totalWage=0;
         int count =0;
@@ -34,7 +24,7 @@ public class EmployeeWageComputation {
         int count2=0;
         int emphr=0;
         int i =1;
-        while (totalhours<=hoursPerMonth && i<=days){
+        while (totalhours<=workingHoursperMonth && i<=workindayspermonth){
             int check = random();
             int wage=0;
             int hour =0;
@@ -42,16 +32,16 @@ public class EmployeeWageComputation {
             switch (check) {
                 case 0:
                     System.out.println("Day "+i+" :- Employee is Present");
-                    wage = wagePerHour * fullDay;
+                    wage = wagePerHour * fullTimeHours;
                     System.out.println("Employee Wage is : " + wage);
-                    hour=fullDay;
+                    hour=fullTimeHours;
                     count++;
                     break;
                 case 1:
                     System.out.println("Day "+i+" :- Employee is Present for PartTime");
-                    wage = wagePerHour * partTime;
+                    wage = wagePerHour * partTimeHours;
                     System.out.println("Employee Wage is : " + wage);
-                    hour=partTime;
+                    hour=partTimeHours;
                     count1++;
                     break;
                 case 2:
@@ -65,36 +55,40 @@ public class EmployeeWageComputation {
             totalhours= totalhours + hour;
             System.out.println();
         }
-        if (totalhours>100){
-            totalhours=100;
-            totalWage=100*wagePerHour;
-        }
-        System.out.println("\nWage of 20 days is: "+totalWage);
+
+
+        System.out.println("\nWage of "+workindayspermonth+" days is: "+totalWage);
         System.out.println("Total time : "+totalhours);
+
+        if (totalhours > workingHoursperMonth){
+            int otHours=totalhours-workingHoursperMonth;
+            int finalOtHours=otHours*wagePerHour*10;
+            System.out.println("Because Employee is Work for "+otHours+" hours as Over Time so the Wage For Over Time hours is: "+finalOtHours);
+            totalWage=totalWage+finalOtHours;
+            System.out.println("The Total Wage of employee after Adding Over Time Hours in : "+totalWage);
+        }
 
         System.out.println("\nEmployee is present for "+count);
         System.out.println("Employee is Present for Part-Time "+count1);
         System.out.println("Employee is Absent "+count2);
-        if (totalhours<100){
-            return true;
-        }else{
-            return false;
-        }
+
+
+        return totalWage;
     }
 
+ public  int toComputeWageOfAnEmployee(int fulldays,int part_time,int absent,int wageperhour){
+     int totalwage= ((fulldays*fullDay)+(part_time*partTime)+(absent*0))*wageperhour;
+     return totalwage;
+ }
 
-
-
-
-
-
-
+ public int toComputeHoursOfAnEmployee(int wage){
+     return wage/wagePerHour;
+ }
 
 
 //    public static void main(String[] args) {
-//        System.out.println("Welcome to the Emplyee Wage Computation");
 //        EmployeeWageComputation e = new EmployeeWageComputation();
-//        //e.calculateWage();
-//
+//        e.calculateWage("Tata",100,19,8,4,20);
 //    }
+
 }
